@@ -3,13 +3,13 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Exception\HttpNotFoundException;
+use MariaLembeck\Tarefas\Service\TarefasService;
 //use Slim\Exception\HttpNotFoundException;
 
 require __DIR__ . '/vendor/autoload.php';
  
 $app = AppFactory::create();
-
-/*
 //  middleware é um evento que ocorre antes da requisição chegar na rota
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
@@ -24,8 +24,25 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
     return $response->withHeader('Content-Type', 'application/json')
                     ->withStatus(404);
 });
-*/
  
+$app->get('/tarefas', function (Request $request, Response $response, array $args) {
+    $tarefa_service = new TarefaService();
+    $tarefas =  $tarefa_service->getAllTarefas();
+    $response->getBody()->write(json_encode($tarefas));
+    return $response->withHeader('Content-Type', 'application/json');
+});
+ 
+$app->post('/tarefas', function(Request $request, Response $response, array $args){
+ 
+});
+$app->delete('/tarefas/{id}', function(Request $requets, Response $response, array $args) {
+ 
+});
+$app->put('/tarefas/{id}', function(Request $requets, Response $response, array $args) {
+ 
+});
+ 
+
 $app->get('/usuarios', function (Request $request, Response $response, array $args) {
     $usuarios = [
         ["id"=>1, "login"=> "elisa.fonseca", "nome"=> "Elisa Fonseca"],
