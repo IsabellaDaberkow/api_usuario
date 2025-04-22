@@ -34,6 +34,41 @@ $app->get("/math/soma/{num1}/{num2}", function(Request $request, Response $respo
     return $response;
 });
 
+$app->get("/math/sub/{num1}/{num2}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->subtrai($args['num1'],$args['num2']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
+$app->get("/math/multi/{num1}/{num2}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->multiplica($args['num1'],$args['num2']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
+$app->get("/math/div/{num1}/{num2}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->divide($args['num1'],$args['num2']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
+$app->get("/math/eleva/{num1}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->elevaAoQuadrado($args['num1']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
+$app->get("/math/raiz/{num1}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->Quadradaraiz($args['num1']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
 $app->get('/teste-debug',function (Request $request, Response $response, array $args){
     $debug = new Debug();
     $response->getBody()->write($debug->debug('teste 00001'));

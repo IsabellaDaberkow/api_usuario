@@ -32,7 +32,7 @@ class Basic
     */
     public function divide(int|float $numero, int|float $divisor)
     {
-        return $numero / $numero2;
+        return $numero / $divisor;
     }
 
       /** 
@@ -47,8 +47,8 @@ class Basic
       /** 
      * @return int|float
     */
-    public function Quadradalica(int|float $numero, int|float $numero2)
+    public function Quadradaraiz(int|float $numero)
     {
-        return $numero * $numero2;
+        return sqrt($numero);
     }
 }
