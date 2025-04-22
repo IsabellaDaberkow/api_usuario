@@ -2,14 +2,13 @@
  
 namespace IsabellaDaberkow\Tarefas\Service;
  
- 
 class TarefasService
 {
-    private $filePath = __DIR__ . '../data.json';
+    private $filePath = __DIR__ . '../../../data.json';
  
     private function readData()
     {
-        if (!file_exist($this->filePath)) {
+        if (!file_exists($this->filePath)) {
             file_put_contents($this->filePath, json_encode([]));
         }
         $json = file_get_contents($this->filePath);
@@ -29,7 +28,7 @@ class TarefasService
         $this->readData($data);
         }
  
-    public function getAllTrefas()
+    public function getAllTarefas()
     {
         return $this->readData();
     }

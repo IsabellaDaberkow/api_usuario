@@ -3,7 +3,12 @@
     "type": "project",
     "require": {
         "slim/slim": "^4.14",
-        "slam/psr7-get-client-ip": "^1.0",
         "slim/psr7": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Projetux\\": "src/"
+        }
     }
 }
+ 

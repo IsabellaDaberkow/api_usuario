@@ -4,7 +4,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Exception\HttpNotFoundException;
-use MariaLembeck\Tarefas\Service\TarefasService;
+use IsabellaDaberkow\Tarefas\Service\TarefasService;
+use Projetux\Infra\Debug;
+use Projetux\Math\Basic;
 //use Slim\Exception\HttpNotFoundException;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -25,20 +27,58 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
                     ->withStatus(404);
 });
  
+$app->get("/math/soma/{num1}/{num2}", function(Request $request, Response $response, array $args){
+    $basic = new Basic();
+    $resultado = $basic->soma($args['num1'],$args['num2']);
+    $response->getBody()->write((string)$resultado);
+    return $response;
+});
+
+$app->get('/teste-debug',function (Request $request, Response $response, array $args){
+    $debug = new Debug();
+    $response->getBody()->write($debug->debug('teste 00001'));
+    return $response;
+});
+
 $app->get('/tarefas', function (Request $request, Response $response, array $args) {
-    $tarefa_service = new TarefaService();
+    $tarefa_service = new TarefasService();
     $tarefas =  $tarefa_service->getAllTarefas();
     $response->getBody()->write(json_encode($tarefas));
     return $response->withHeader('Content-Type', 'application/json');
 });
  
 $app->post('/tarefas', function(Request $request, Response $response, array $args){
- 
+$parametros = (array) $request->getParsedBody();
+if(!array_key_exists('titulo', $parametros) || empty($parametros['titulo'])){
+    $response->getBody()->write(json_encode([
+        "mensagem"=>"título é obrigatório"
+    ]));
+    return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+}
+    $tarefa = array_merge(['titulo' => '', 'concluido' => false], $parametros);
+    $tarefa_service = new TarefaService ();
+    $tarefa_service -> createTarefa($tarefa);
+    return$response->withStatus(201);
 });
 $app->delete('/tarefas/{id}', function(Request $requets, Response $response, array $args) {
  
+$id = $args['id'];
+$tarefa_service = new TarefasService();
+$tarefa_services->deleteTarefa($id);
+return $response->eithStatus(204);
+
 });
 $app->put('/tarefas/{id}', function(Request $requets, Response $response, array $args) {
+ $id = $args['id'];
+ $dados_para_atualizar = json_decode($request->getBody()->getContents(), true);if(array_key_exists('titulo', $dados_para_atualizar)&& empty($dados_para_atualizar['titulo'])){
+    $response->getBody()->write(json_encode([
+        "mensagem"=>"título é obrigatório"
+    ]));
+    return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
+    }
+    $tarefa_service = new TarefaService();
+    $tarefa_service->updateTarefa($id, $dados_para_atualizar);
+    return $response->withStatus(201);
  
 });
  

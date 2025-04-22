@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "687764c2420348635ac13e89e735081a",
+    "content-hash": "98dcc3f26c6795000d0e5ca410cc00e9",
     "packages": [
         {
             "name": "fig/http-message-util",
@@ -479,66 +479,6 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
-        },
-        {
-            "name": "slam/psr7-get-client-ip",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Slamdunk/psr7-get-client-ip.git",
-                "reference": "cec2743e413866fbbf229f8b625686b166090570"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Slamdunk/psr7-get-client-ip/zipball/cec2743e413866fbbf229f8b625686b166090570",
-                "reference": "cec2743e413866fbbf229f8b625686b166090570",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~8.1.0 || ~8.2.0",
-                "psr/http-message": "^1.1 || ^2.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.27",
-                "laminas/laminas-diactoros": "^3.1",
-                "phpstan/phpstan": "^1.10.28",
-                "phpstan/phpstan-phpunit": "^1.3.13",
-                "phpunit/phpunit": "^10.3.1",
-                "slam/php-cs-fixer-extensions": "^3.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Slam\\Psr7GetClientIp\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filippo Tessarotto",
-                    "email": "zoeslam@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Retrieve Client IP from a ServerRequestInterface",
-            "support": {
-                "issues": "https://github.com/Slamdunk/psr7-get-client-ip/issues",
-                "source": "https://github.com/Slamdunk/psr7-get-client-ip/tree/v1.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/filippotessarotto",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Slamdunk",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-08-10T13:49:46+00:00"
         },
         {
             "name": "slim/psr7",
